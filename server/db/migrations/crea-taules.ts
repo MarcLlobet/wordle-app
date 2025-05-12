@@ -18,7 +18,6 @@ const creaDatabaseQueries = [
 export const up = async () => {
     await sqlQuery(creaDatabaseQueries)
 }
-await up()
 
 export const down = async () => {
     await sqlQuery(destrueixDatabasesQueries)

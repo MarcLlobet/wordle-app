@@ -5,7 +5,10 @@
         "rootDir": "./server",
         "declaration": true,
         "noEmit": false,
-        "allowImportingTsExtensions": false
+        "allowImportingTsExtensions": false,
+        "module": "Node16",
+        "moduleResolution": "Node16",
+        "target": "ESNext"
     },
-    "include": ["server/**/*.ts", "server/**/*.tsx"]
+    "include": ["server/**/*.ts"]
 }
