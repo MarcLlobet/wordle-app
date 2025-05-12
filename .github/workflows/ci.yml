@@ -82,25 +82,12 @@ jobs:
             - name: Setup 🛠️
               uses: ./.github/actions/setup
 
-            - name: Coverage 🏗️
-              env:
-                  DB_URL: ${{ secrets.DB_URL }}
-                  DB_SERVICE_ROLE: ${{ secrets.DB_API_KEY }}
-                  DB_API_KEY: ${{ secrets.DB_API_KEY }}
-              run: yarn coverage
-
             - name: Run build 🏗️
               env:
                   DB_URL: ${{ secrets.DB_URL }}
                   DB_SERVICE_ROLE: ${{ secrets.DB_API_KEY }}
                   DB_API_KEY: ${{ secrets.DB_API_KEY }}
               run: yarn build
-
-            - name: Copy coverage to dist 🗃️
-              run: |
-                  mkdir -p dist/coverage
-                  cp -r coverage/* dist/coverage/
-              shell: bash
 
             - name: Setup Pages 🌎
               uses: actions/configure-pages@v5
