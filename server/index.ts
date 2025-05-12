@@ -1,32 +1,26 @@
+import 'dotenv/config'
 import express from 'express'
-import { getMillorEntrada } from './logic'
-import { EstatWordle, filtraParaulesValides } from './bitwise'
-import { getEntradesOriginals, getTotesLesParaules } from './diccionari'
+import { getPrimeraParaula } from './db/queries/getPrimeraParaula'
+import { getSeguentParaula } from './db/queries/getSeguentParaula'
 
 export const app = express()
 app.use(express.json())
 
 const PORT = process.env.PORT ?? 3000
 
-app.get('/api/millor-paraula', (_, res) => {
-    const millorEntrada = getMillorEntrada()
-    res.json({ millorParaula: millorEntrada.origen })
+app.get('/api/primera-paraula', async (req, res) => {
+    const llargadaQuery = req.query?.llargada
+        ? Number.parseInt(req.query.llargada as string, 10)
+        : 5
+
+    const millorParaula = await getPrimeraParaula(llargadaQuery)
+    res.json({ millorParaula })
 })
 
-app.post('/api/paraules-valides', (req, res) => {
-    const estatWordle = req.body
-    const totesLesParaules = getTotesLesParaules()
-
-    const paraulesValides = filtraParaulesValides(
-        totesLesParaules,
-        estatWordle as EstatWordle
-    )
-    res.json({ paraulesValides })
-})
-
-app.get('/diccionari', (_, res) => {
-    const totesLesParaules = getEntradesOriginals()
-    res.send(totesLesParaules)
+app.post('/api/filtra-paraules', async (req, res) => {
+    console.log(req.body)
+    const paraules = await getSeguentParaula(req.body)
+    res.json({ paraules })
 })
 
 app.listen(PORT, () => {

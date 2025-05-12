@@ -6,6 +6,6 @@ export default defineConfig({
             reporter: ['text', 'html'],
         },
         threads: false,
-        setupFiles: './vitest.setup.ts',
     },
+    assetsInclude: ['**/*.txt'],
 } as ViteUserConfig)

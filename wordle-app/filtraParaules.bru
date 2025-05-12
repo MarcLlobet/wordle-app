@@ -1,0 +1,21 @@
+meta {
+  name: filtraParaules
+  type: http
+  seq: 5
+}
+
+post {
+  url: http://{{HOST}}:{{PORT}}/api/filtra-paraules
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "llargada": 5,
+    "encerts": [],
+    "descartades": [],
+    "malColocades": [],
+    "limit": 1
+  }
+}

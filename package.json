@@ -9,7 +9,6 @@
         "build": "vite build",
         "lint": "eslint .",
         "preview": "vite preview",
-        "wordle": "tsx server/logic/index.ts $NUM_LLETRES",
         "check-js-files": "tsx scripts/check-js-files.ts",
         "postinstall": "husky",
         "dev:server": "nodemon --watch server --ext ts --exec tsx server/index.ts",
@@ -22,6 +21,7 @@
     },
     "devDependencies": {
         "@eslint/js": "^9.22.0",
+        "@supabase/supabase-js": "^2.49.4",
         "@testing-library/react": "^16.3.0",
         "@types/express": "^5.0.1",
         "@types/glob": "^8.1.0",
@@ -31,6 +31,7 @@
         "@types/supertest": "^6.0.3",
         "@vitejs/plugin-react": "^4.3.4",
         "@vitest/coverage-v8": "3.1.2",
+        "dotenv": "^16.5.0",
         "eslint": "^9.22.0",
         "eslint-plugin-react-hooks": "^5.2.0",
         "eslint-plugin-react-refresh": "^0.4.19",
