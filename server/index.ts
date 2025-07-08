@@ -8,7 +8,7 @@ app.use(express.json())
 
 const PORT = process.env.PORT ?? 3000
 
-app.get('/api/millor-paraula', (_, res) => {
+app.get('/api/wordle', (_, res) => {
     const millorEntrada = getMillorEntrada()
     res.json({ millorParaula: millorEntrada.origen })
 })

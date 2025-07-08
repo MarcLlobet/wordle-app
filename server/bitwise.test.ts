@@ -80,13 +80,13 @@ describe('validaAbsenciaMalColocades', () => {
     })
 
     describe('validaPresenciaMalColocades', () => {
-        it('valida que les lletres mal col·locades no estiguin a la posició equivocada', () => {
+        it('valida la presència de les lletres mal col·locades', () => {
             const validador = validaPresenciaMalColocades({
                 ...mockEstatWordle,
                 malColocades: [['a', 2]],
             })
-            expect(validador('____1')).toBe(false)
-            expect(validador('a___2')).toBe(true)
+            expect(validador('_____')).toBe(false)
+            expect(validador('a____')).toBe(true)
         })
     })
 })
