@@ -1,40 +1,34 @@
 import { createContext, useContext, useReducer, ReactNode } from 'react'
 import { actions, Action } from './actions'
-import { EstatWordle } from '../server/bitwise'
 
 export type FinalJoc = 'guanyat' | 'perdut' | null
 
 type AppState = {
-    paraulaCorrecte: string
     paraulaActual: string[]
     intents: string[][]
+    intentsEstat: [string, number][][]
     quantitatLletres: number
     quantitatIntents: number
-    wordle: EstatWordle
     finalJoc: FinalJoc
-    ultimIntent: string | null
+    paraulesPistes: string[]
 }
 
 const initialState: AppState = {
-    paraulaCorrecte: 'boira',
     paraulaActual: [],
     intents: [],
+    intentsEstat: [],
     quantitatLletres: 5,
     quantitatIntents: 6,
-    wordle: {
-        llargada: 5,
-        encerts: [],
-        descartades: [],
-        malColocades: [],
-    },
     finalJoc: null,
-    ultimIntent: null,
+    paraulesPistes: [],
 }
 
 type AnyAction = Action<unknown>
 
 const appReducer = (state: AppState, action: AnyAction): AppState => {
     switch (action.type) {
+        case actions.SET_INITIAL_MOUNT:
+            return { ...state, ...(action.payload as object) }
         case actions.SET_PARAULA:
             return { ...state, paraulaActual: action.payload as string[] }
         case actions.ADD_LLETRA:
@@ -53,20 +47,26 @@ const appReducer = (state: AppState, action: AnyAction): AppState => {
                     state.paraulaActual.length - 1
                 ),
             }
-        case actions.ADD_INTENT:
+        case actions.ADD_INTENT: {
+            const { intent, lletraEstat, paraulesPistes } = action.payload
+            const intentLlista = intent.split('')
+
             return {
                 ...state,
-                intents: [...state.intents, action.payload] as string[][],
-                ultimIntent: (action.payload as string[]).join(''),
+                paraulaActual: [],
+                paraulesPistes,
+                intentsEstat: [...state.intentsEstat, lletraEstat],
+                intents: [...state.intents, intentLlista] as string[][],
             }
+        }
         case actions.SET_INTENTS:
             return { ...state, intents: action.payload as string[][] }
-        case actions.SET_WORDLE_STATE:
-            return { ...state, wordle: action.payload as EstatWordle }
         case actions.SET_JOC_GUANYAT:
             return { ...state, finalJoc: 'guanyat' }
         case actions.SET_JOC_PERDUT:
             return { ...state, finalJoc: 'perdut' }
+        case actions.REINICIAR:
+            return { ...initialState }
         default:
             return state
     }
@@ -84,11 +84,11 @@ export const AppProvider = ({ children }: { children: ReactNode }) => {
     )
 
     return (
-        <DispatchContext.Provider value={dispatch}>
-            <StateContext.Provider value={state}>
+        <StateContext.Provider value={state}>
+            <DispatchContext.Provider value={dispatch}>
                 {children}
-            </StateContext.Provider>
-        </DispatchContext.Provider>
+            </DispatchContext.Provider>
+        </StateContext.Provider>
     )
 }
 

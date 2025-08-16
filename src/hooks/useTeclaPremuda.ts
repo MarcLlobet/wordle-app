@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 const teclesMinuscules = tecles.map((lletra) => lletra.toLowerCase())
 
 export function useTeclaPremuda() {
-    const { paraulaActual, quantitatLletres } = useStateContext()
+    const { paraulaActual, quantitatLletres, finalJoc } = useStateContext()
     const dispatch = useDispatchContext()
 
     useEffect(() => {
@@ -30,10 +30,12 @@ export function useTeclaPremuda() {
             }
         }
 
-        document.addEventListener('keydown', keyDownHandler)
+        if (!finalJoc) {
+            document.addEventListener('keydown', keyDownHandler)
+        }
 
         return () => {
             document.removeEventListener('keydown', keyDownHandler)
         }
-    }, [dispatch, paraulaActual, quantitatLletres])
+    }, [dispatch, paraulaActual, quantitatLletres, finalJoc])
 }

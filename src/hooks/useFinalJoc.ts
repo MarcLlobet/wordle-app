@@ -19,6 +19,5 @@ export const useFinalJoc = () => {
         }
     }, [intents, dispatch, quantitatIntents])
 
-    console.log({ finalJoc })
     return finalJoc
 }
