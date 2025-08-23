@@ -9,7 +9,7 @@ const finalJocMap: Record<Exclude<FinalJoc, null>, string> = {
     perdut: 'Una altre vegada serà...',
 }
 
-export const ModalFinalJoc = ({ finalJoc }: { finalJoc: FinalJoc }) => {
+const ModalFinalJoc = ({ finalJoc }: { finalJoc: FinalJoc }) => {
     const dispatch = useDispatchContext()
     const handleReiniciaJoc = useCallback(() => {
         const reiniciar = async () => {

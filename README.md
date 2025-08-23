@@ -1,34 +1,22 @@
 [![CI](https://github.com/MarcLlobet/millor-primera-paraula-wordle/actions/workflows/ci.yml/badge.svg)](https://github.com/MarcLlobet/millor-primera-paraula-wordle/actions/workflows/ci.yml)
 
-# millor-primera-paraula-wordle
+# wordle
 
-Calculador de millor primera paraula pel wordle.
-
-## Motivació
-
-Us heu preguntat mai quina és la millor paraula que es pot usar en el wordle, en primera instància?
-
-Aquest projecte intenta construir l'algoritme més refinat per trobar la paraula més útil del diccionari per començar el joc.
-
-## Descripció
-
-L'Script pren el diccionari que li coloquis amb un format LanguageTool, el llegeix i torna una paraula.
+Juga a wordle sense parar! Amb extres com recomanacions de paraules, diferents llargades de paraula i molt més!
 
 ### Algortime
 
 - Filtrem el diccionari per paraules de la llargada
-- Enumerem les coincidencies de lletres en totes les paraules
-- Enumerem les coincidencies de lletres en cada una de les posicions
-- Ordenem les lletres per quantitat de coincidencia
-- Ordenem les posicions per quantitat de coincidencia
-- Busquem lletres fins que en tinguem tantes com desitjades, per defecte 5:
-
-1. Prenem la següent lletra no utilitzada
-2. prenem la següent posicio no utilitzada
-3. busquem una paraula amb aquesta lletra
-    - Si existeix, guardem la lletra i la posicio com a utilitzades
-    - Si no existeix, tornem al pas 2, fins que comprovem totes les posicions
-    - Si no existeix cap paraula, en cap posicio, amb la lletra, tornem al pas 1
+- Passem per totes les paraules contant quantes vegades surt cada lletra
+    - Obtindrem el número total de coincidències per lletra (exemple: b => 500 vegades)
+- Passem per totes les posicions contant cada lletra
+    - Obtindrem el número total de coincidències per lletra a cada posició (exemple: b => 100 vegades a la posició 1)
+- Passem per totes les paraules assignant una puntuació:
+    - Fem un sumatori de cada lletra: La posició més la lletra total.
+    - Exemple: "arbre":
+        - Primera lletra, "a", sumem el total de vegades que surt més el total de vegades que surt a la primera posició. Així amb totes les lletres.
+        - Hi haurà una excepció. Només es sumarà el total una vegada. Si es repeteixen les lletres, com per exemple, la segona "r", només es sumarà la seva posició. És una forma de penalitzar les lletres duplicades.
+- Ordenem les paraules per puntuació.
 
 ## Ús
 
