@@ -20,13 +20,12 @@ Juga a wordle sense parar! Amb extres com recomanacions de paraules, diferents l
 
 ## Ús
 
-A la carpeta diccionari has de colocar-hi un fitxer _index.txt_ amb el diccionari que vulguis analitzar.
+Córre `yarn` per instalar-ho tot.
 
-Córre `npm start` a la linea de comandes.
-
-- Per defecte utilitza 5 lletres, està limitat desde 3 a 7 lletres, amdos inclosos, passant un paràmetre de la següent manera:
-  `NUM_LLETRES=7 npm start`
+Córre `yarn dev` per correr el frontend. I `yarn dev:server` en un altre terminal, per al backend.
 
 ### Requisits
 
 Necessites tenir _node_ amb _npm_ instalat.
+
+Si et falta _yarn_, fés `npm i -g yarn`.

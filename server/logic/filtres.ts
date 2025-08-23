@@ -1,7 +1,7 @@
-import { ABECEDARI } from './constants'
-import { QUANTITAT_LLETRES } from './getQuantitatLletres'
+import { ABECEDARI_TEXT } from '../intents'
 import type { Entrada } from '../types'
 
+const QUANTITAT_LLETRES = 5
 const MARCA_C_TRENCADA = 'MARCA_C_TRENCADA'
 
 const manipulaParaula = (
@@ -60,7 +60,7 @@ export const filtreCaractersAbecedari = ({ origen }: Entrada): boolean => {
         : ''
     return paraulaAmbCaractersValids
         .split('')
-        .every((lletra) => ABECEDARI.includes(lletra))
+        .every((lletra) => ABECEDARI_TEXT.includes(lletra))
 }
 
 export const filtreCaractersUnics = (paraula: string): boolean =>
