@@ -3,5 +3,5 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
     plugins: [react()],
-    base: '/millor-primera-paraula-wordle/',
+    base: '/wordle-app/',
 } as ViteUserConfig)
